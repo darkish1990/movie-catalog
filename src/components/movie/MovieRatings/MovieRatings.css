@@ -13,8 +13,8 @@
 }
 
 .ratings-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -23,6 +23,8 @@
   border: 1px solid rgba(255, 180, 0, 0.2);
   padding: 1rem;
   border-radius: 12px;
+  flex: 1;
+  min-width: 200px;
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
