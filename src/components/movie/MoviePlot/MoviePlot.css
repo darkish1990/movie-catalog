@@ -1,0 +1,44 @@
+.movie-plot {
+  margin-bottom: 2.5rem;
+}
+
+.movie-plot h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e50914;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plot {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 3px solid #e50914;
+  position: relative;
+}
+
+.plot::before {
+  content: '"';
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  font-size: 2rem;
+  color: rgba(229, 9, 20, 0.3);
+  font-family: serif;
+}
+
+.plot::after {
+  content: '"';
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.75rem;
+  font-size: 2rem;
+  color: rgba(229, 9, 20, 0.3);
+  font-family: serif;
+}

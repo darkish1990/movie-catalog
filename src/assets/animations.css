@@ -1,0 +1,328 @@
+/* Custom Animations and Transitions */
+
+/* Fade animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced Shimmer Effects - Movie Catalog Theme */
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes shimmerGold {
+  0% { 
+    left: -100%; 
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  }
+  100% { 
+    left: 100%; 
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  }
+}
+
+@keyframes shimmerRed {
+  0% { 
+    left: -100%; 
+    background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.4), transparent);
+  }
+  100% { 
+    left: 100%; 
+    background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.4), transparent);
+  }
+}
+
+@keyframes shimmerRedGold {
+  0% { 
+    left: -100%; 
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(229, 9, 20, 0.4), 
+      rgba(255, 215, 0, 0.4), 
+      transparent);
+  }
+  100% { 
+    left: 100%; 
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(229, 9, 20, 0.4), 
+      rgba(255, 215, 0, 0.4), 
+      transparent);
+  }
+}
+
+/* Background animations */
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: 0% 50%, 100% 50%, 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%, 0% 0%;
+  }
+}
+
+/* Loading animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Bounce effect for interactive elements */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  60% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Glow effect */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+  }
+}
+
+/* Enhanced Glow and Pulse Effects */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(229, 9, 20, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.6), 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@keyframes hoverGlow {
+  0% {
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+  }
+  100% {
+    box-shadow: 0 6px 20px rgba(229, 9, 20, 0.4), 0 0 30px rgba(255, 215, 0, 0.2);
+  }
+}
+
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.8),
+      0 0 20px rgba(229, 9, 20, 0.5);
+  }
+}
+
+/* Movie-specific Animations */
+@keyframes movieCardHover {
+  0% {
+    transform: translateY(0) scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 12px 32px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(229, 9, 20, 0.2);
+  }
+}
+
+@keyframes posterGlow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px rgba(229, 9, 20, 0.3),
+      0 0 30px rgba(255, 215, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Float Animation */
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Utility animation classes */
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slideInFromTop {
+  animation: slideInFromTop 0.8s ease-out;
+}
+
+.animate-slideInFromBottom {
+  animation: slideInFromBottom 0.6s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Enhanced Utility Animation Classes */
+.animate-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+.animate-shimmer-red::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.4), transparent);
+  animation: shimmerRed 2s infinite;
+}
+
+.animate-shimmer-red-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(229, 9, 20, 0.4), 
+    rgba(255, 215, 0, 0.4), 
+    transparent);
+  animation: shimmerRedGold 3s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-hover-glow {
+  transition: all 0.3s ease;
+}
+
+.animate-hover-glow:hover {
+  animation: hoverGlow 0.3s ease forwards;
+}
+
+.animate-text-glow {
+  animation: textGlow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+.animate-movie-card-hover {
+  transition: all 0.3s ease;
+}
+
+.animate-movie-card-hover:hover {
+  animation: movieCardHover 0.3s ease forwards;
+}
+
+.animate-poster-glow {
+  animation: posterGlow 3s ease-in-out infinite;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+.stagger-7 { animation-delay: 0.7s; }
+.stagger-8 { animation-delay: 0.8s; }
+
+/* Smooth transitions for all elements */
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-glow:hover {
+  filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.3));
+}

@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: 
+    radial-gradient(ellipse at top, var(--overlay-red-medium) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, var(--overlay-red-light) 0%, transparent 50%),
+    var(--gradient-background);
+  background-attachment: fixed;
+  background-size: 100% 200%, 100% 200%, 100% 100%;
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+  0%, 100% {
+    background-position: 0% 50%, 100% 50%, 0% 0%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 50%, 0% 0%;
+  }
+}
+
+#app {
+  min-height: 100vh;
+  position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gradient-primary-hover);
+}

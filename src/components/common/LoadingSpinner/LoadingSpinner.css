@@ -1,0 +1,36 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.spinner {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #e50914;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spinner::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  background: conic-gradient(from 0deg, #e50914, #ff6b6b, #ffd700, #e50914);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}

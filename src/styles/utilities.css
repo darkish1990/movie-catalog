@@ -1,0 +1,119 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.875rem 1.75rem;
+  background: var(--gradient-primary);
+  color: var(--text-primary);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 20px var(--shadow-red);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--overlay-medium), transparent);
+  transition: left var(--transition-slow);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-hover);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  background: var(--state-disabled-bg);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Global Loading and Error Styles */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem var(--space-xl);
+  text-align: center;
+}
+
+.spinner {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.spinner::before {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-primary);
+  border-top: 3px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.error {
+  background: var(--gradient-error);
+  color: var(--text-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  margin: var(--space-xl) 0;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(139, 0, 0, 0.3);
+  border: 1px solid var(--border-muted);
+}
+
+.error h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-md);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--space-md);
+  }
+  
+  .nav {
+    padding: 0 var(--space-md);
+  }
+  
+  .nav-brand {
+    font-size: 1.5rem;
+  }
+}

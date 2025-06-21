@@ -1,0 +1,77 @@
+/* Enhanced Search Section Styles - Movie Catalog Theme */
+/* Main container styles only - subcomponent styles are in their own files */
+
+.enhanced-search-section {
+  padding: 2rem;
+  background: 
+    radial-gradient(ellipse at top left, rgba(229, 9, 20, 0.2) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+    linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #0f0f0f 50%, #1e1e1e 75%, #0c0c0c 100%);
+  border-radius: 16px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(229, 9, 20, 0.3),
+    inset 0 -1px 0 rgba(255, 215, 0, 0.2);
+  margin-bottom: 2rem;
+  color: white;
+  border: 1px solid rgba(229, 9, 20, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.enhanced-search-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(229, 9, 20, 0.8), rgba(255, 215, 0, 0.8), transparent);
+  animation: shimmerRedGold 3s infinite;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #e50914, #ff6b6b, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  text-align: center;
+  margin: 0 0 2rem 0;
+  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .enhanced-search-section {
+    padding: 1.5rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .enhanced-search-section {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+}
