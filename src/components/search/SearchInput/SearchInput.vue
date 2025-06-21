@@ -7,13 +7,18 @@
       type="text"
       placeholder="Search movies by title, actor, or keywords..."
       class="search-input"
-    />
-    <button 
-      @click="handleSearch" 
-      class="search-btn"
-      :disabled="!searchQuery.trim() || loading"
+    />    <button 
+      v-if="searchQuery.trim()"
+      @click="clearSearch"
+      @keydown.enter="clearSearch"
+      @keydown.space.prevent="clearSearch"
+      class="clear-btn"
+      type="button"
+      aria-label="Clear search"
+      title="Clear search"
+      tabindex="0"
     >
-      🔍 {{ loading ? 'Searching...' : 'Search' }}
+      ✕
     </button>
   </div>
 </template>
@@ -32,6 +37,7 @@ const searchQuery = ref('')
 
 const emits = defineEmits<{
   search: [query: string]
+  clear: []
 }>()
 
 const handleSearch = () => {
@@ -48,6 +54,11 @@ const debouncedSearch = debounce((query: string) => {
 
 const handleInput = () => {
   debouncedSearch(searchQuery.value)
+}
+
+const clearSearch = () => {
+  searchQuery.value = ''
+  emits('clear')
 }
 </script>
 

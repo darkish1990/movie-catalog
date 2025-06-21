@@ -39,26 +39,17 @@ const suggestions: Suggestion[] = [
   { icon: '🕵️', label: 'Mystery & Thriller', action: 'genre', value: '53' },
   { icon: '🏰', label: 'Fantasy Epics', action: 'genre', value: '14' },
   { icon: '🎬', label: 'Drama Classics', action: 'genre', value: '18' },
-  { icon: '💥', label: 'Action Blockbusters', action: 'genre', value: '28' },
   { icon: '🌟', label: 'Animation & Family', action: 'genre', value: '16' },
   { icon: '🚀', label: 'Adventure Films', action: 'genre', value: '12' },
   
-  // Time period suggestions
-  { icon: '🆕', label: '2024 Releases', action: 'year', value: '2024' },
-  { icon: '🔥', label: '2023 Hits', action: 'year', value: '2023' },
-  { icon: '📺', label: '90s Classics', action: 'decade', value: '1990s' },
-  { icon: '🎞️', label: '80s Movies', action: 'decade', value: '1980s' },
-  
   // Rating-based suggestions
   { icon: '⭐', label: 'Top Rated (9+)', action: 'rating', value: '9' },
-  { icon: '🏆', label: 'Highly Rated (7+)', action: 'rating', value: '7' },
   
   // Popular search terms
   { icon: '🎪', label: 'Marvel Universe', action: 'search', value: 'Marvel' },
   { icon: '⚡', label: 'DC Comics', action: 'search', value: 'DC' },
   { icon: '🌌', label: 'Star Wars', action: 'search', value: 'Star Wars' },
   { icon: '🧙', label: 'Harry Potter', action: 'search', value: 'Harry Potter' },
-  { icon: '🦖', label: 'Jurassic Park', action: 'search', value: 'Jurassic' }
 ]
 </script>
 

@@ -6,12 +6,11 @@
     <SearchModeToggle 
       :searchMode="searchMode"
       @modeChanged="searchMode = $event"
-    />
-
-    <SearchInput 
+    />    <SearchInput 
       v-if="searchMode === 'search'"
       :loading="loading"
       @search="$emit('search', $event)"
+      @clear="$emit('search', '')"
     />
 
     <DiscoverFilters 
