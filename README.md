@@ -4,7 +4,7 @@ A modern Vue 3 movie discovery app powered by The Movie Database (TMDB) API.
 
 ## 🌐 Live Demo
 
-🚀 **Production:** [View Live App](https://liba-movie-database.netlify.app/) *(Coming Soon)*
+🚀 **Production:** [View Live App](https://liba-movie-database.netlify.app/)
 
 ## ✨ Features
 
