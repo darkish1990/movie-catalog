@@ -48,6 +48,9 @@
   letter-spacing: -0.5px;
   position: relative;
   display: inline-block;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .nav-brand::before {
@@ -69,6 +72,14 @@
 .nav-brand:hover {
   transform: scale(1.05);
   filter: brightness(1.2) drop-shadow(0 0 10px var(--shadow-red));
+}
+
+.nav-brand:focus {
+  outline: none;
+}
+
+.nav-brand:focus-visible {
+  outline: none;
 }
 
 .main-content {

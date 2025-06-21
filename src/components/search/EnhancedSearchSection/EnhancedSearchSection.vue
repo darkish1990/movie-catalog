@@ -44,19 +44,30 @@ import QuickSuggestions from '../QuickSuggestions/QuickSuggestions.vue'
 interface Props {
   loading: boolean
   genres: Genre[]
+  mode?: 'search' | 'discover' | 'trending'
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emits = defineEmits<{
   search: [query: string]
   discover: [filters: TMDBSearchFilters]
   trending: [period: 'day' | 'week']
+  modeChanged: [mode: 'search' | 'discover' | 'trending']
 }>()
 
-const searchMode = ref<'search' | 'discover' | 'trending'>('search')
+const searchMode = ref<'search' | 'discover' | 'trending'>(props.mode || 'search')
+
+watch(() => props.mode, (newMode) => {
+  if (newMode && newMode !== searchMode.value) {
+    searchMode.value = newMode
+  }
+})
 
 watch(searchMode, (newMode, oldMode) => {
+  if (newMode !== oldMode) {
+    emits('modeChanged', newMode)
+  }
   if (newMode === 'trending' && oldMode !== 'trending') {
     emits('trending', 'week')
   }

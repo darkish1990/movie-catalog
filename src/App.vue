@@ -2,9 +2,9 @@
   <div id="app">
     <header class="app-header">
       <nav class="nav">
-        <router-link to="/" class="nav-brand">
+        <button @click="goToHomeAndClear" class="nav-brand">
           🎬 Movie Catalog
-        </router-link>
+        </button>
       </nav>
     </header>
     
@@ -17,8 +17,16 @@
 <script setup lang="ts">
 import { onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
+import { useMovieStore } from './stores/movieStore'
 
 const router = useRouter()
+const movieStore = useMovieStore()
+
+const goToHomeAndClear = () => {
+  // Clear all store data and go to fresh home
+  movieStore.reset()
+  router.push('/')
+}
 
 onMounted(() => {
   router.afterEach((_to, _from) => {

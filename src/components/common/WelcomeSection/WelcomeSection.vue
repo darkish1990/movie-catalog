@@ -4,9 +4,15 @@
     <p>Discover amazing movies through search, trending content, or personalized recommendations using the movie discovery area above.</p>
       <div class="features">
       <h3>🎬 What You Can Do:</h3>
-      
-      <div class="features-grid">
-        <div class="feature-section">
+        <div class="features-grid">
+        <div 
+          class="feature-section clickable"
+          @click="$emit('navigateToSearch')"
+          role="button"
+          tabindex="0"
+          @keyup.enter="$emit('navigateToSearch')"
+          @keyup.space.prevent="$emit('navigateToSearch')"
+        >
           <h4>🔍 Search Movies</h4>
           <ul>
             <li>Search by movie title, actor, or keywords</li>
@@ -15,7 +21,14 @@
           </ul>
         </div>
 
-        <div class="feature-section">
+        <div 
+          class="feature-section clickable"
+          @click="$emit('navigateToDiscover')"
+          role="button"
+          tabindex="0"
+          @keyup.enter="$emit('navigateToDiscover')"
+          @keyup.space.prevent="$emit('navigateToDiscover')"
+        >
           <h4>🌟 Discover Movies</h4>
           <ul>
             <li>🎭 Filter by genre (Action, Comedy, Drama, Horror, etc.)</li>
@@ -25,15 +38,27 @@
           </ul>
         </div>
 
-        <div class="feature-section">
+        <div 
+          class="feature-section clickable"
+          @click="$emit('navigateToTrending')"
+          role="button"
+          tabindex="0"
+          @keyup.enter="$emit('navigateToTrending')"
+          @keyup.space.prevent="$emit('navigateToTrending')"
+        >
           <h4>🔥 Trending Now</h4>
           <ul>            <li>📈 See what's trending this week</li>
             <li>📅 Check today's most popular movies</li>
             <li>🌟 Stay updated with current movie trends</li>
           </ul>
-        </div>
-
-        <div class="feature-section">
+        </div>        <div 
+          class="feature-section clickable"
+          @click="handleQuickSuggestionsClick"
+          role="button"
+          tabindex="0"
+          @keyup.enter="handleQuickSuggestionsClick"
+          @keyup.space.prevent="handleQuickSuggestionsClick"
+        >
           <h4>🎯 Quick Suggestions</h4>
           <ul>
             <li>🦸 Popular franchises (Marvel, DC, Star Wars)</li>
@@ -62,6 +87,15 @@
 </template>
 
 <script setup lang="ts">
+defineEmits<{
+  navigateToSearch: []
+  navigateToDiscover: []
+  navigateToTrending: []
+}>()
+
+const handleQuickSuggestionsClick = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 </script>
 
 <style scoped>

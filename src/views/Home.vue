@@ -1,11 +1,12 @@
 <template>
-  <div class="home">
-    <EnhancedSearchSection
+  <div class="home">    <EnhancedSearchSection
       :loading="loading"
       :genres="genres"
+      :mode="searchMode"
       @search="handleSearch"
       @discover="handleDiscover"
       @trending="handleTrending"
+      @modeChanged="handleModeChanged"
     />
     <LoadingSpinner v-if="loading" message="Loading movies..." />
     <ErrorMessage v-if="error" :message="error" @retry="movieStore.clearError" />
@@ -19,9 +20,11 @@
     <NoResults
       v-if="!loading && !error && !hasMovies && searchQuery"
       :searchQuery="searchQuery"
-    />
-    <WelcomeSection
+    />    <WelcomeSection
       v-if="!loading && !error && !hasMovies && !searchQuery"
+      @navigateToSearch="handleNavigateToSearch"
+      @navigateToDiscover="handleNavigateToDiscover"
+      @navigateToTrending="handleNavigateToTrending"
     />
     <ScrollToTop />
   </div>
@@ -45,6 +48,7 @@ onMounted(async () => {
 })
 
 const searchQuery = ref('')
+const searchMode = ref<'search' | 'discover' | 'trending'>('search')
 
 const filteredMovies = computed(() => movieStore.filteredMovies)
 const loading = computed(() => movieStore.loading)
@@ -66,6 +70,10 @@ const handleTrending = async (period: 'day' | 'week') => {
   await movieStore.getTrendingMovies(period)
 }
 
+const handleModeChanged = (mode: 'search' | 'discover' | 'trending') => {
+  searchMode.value = mode
+}
+
 const getResultsTitle = () => {
   const mode = movieStore.searchMode
   if (mode === 'search' && searchQuery.value) {
@@ -80,6 +88,26 @@ const getResultsTitle = () => {
 
 const goToMovieDetails = (movieId: number) => {
   router.push(`/movie/${movieId}`)
+}
+
+const handleNavigateToSearch = () => {
+  searchMode.value = 'search'
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const handleNavigateToDiscover = () => {
+  searchMode.value = 'discover'
+  handleDiscover({
+    sortBy: 'popularity.desc',
+    page: 1
+  })
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const handleNavigateToTrending = () => {
+  searchMode.value = 'trending'
+  handleTrending('week')
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 </script>
 
