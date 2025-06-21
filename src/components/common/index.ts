@@ -1,6 +1,8 @@
 // Common Components - Re-exporting for easy importing
 export { BackButton } from './BackButton'
+export { DetailItem } from './DetailItem'
 export { ErrorMessage } from './ErrorMessage'
+export { FeatureCard } from './FeatureCard'
 export { LoadingSpinner } from './LoadingSpinner'
 export { NoResults } from './NoResults'
 export { ScrollToTop } from './ScrollToTop'

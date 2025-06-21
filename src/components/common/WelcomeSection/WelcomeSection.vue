@@ -2,81 +2,18 @@
   <div class="welcome">
     <h2>Welcome to Movie Catalog!</h2>
     <p>Discover amazing movies through search, trending content, or personalized recommendations using the movie discovery area above.</p>
-      <div class="features">
+    
+    <div class="features">
       <h3>🎬 What You Can Do:</h3>
-        <div class="features-grid">
-        <div 
-          class="feature-section clickable"
-          @click="$emit('navigateToSearch')"
-          role="button"
-          tabindex="0"
-          @keyup.enter="$emit('navigateToSearch')"
-          @keyup.space.prevent="$emit('navigateToSearch')"
-        >
-          <h4>🔍 Search Movies</h4>
-          <ul>
-            <li>Search by movie title, actor, or keywords</li>
-            <li>Find specific movies quickly and easily</li>
-            <li>Get instant search results</li>
-          </ul>
-        </div>
-
-        <div 
-          class="feature-section clickable"
-          @click="$emit('navigateToDiscover')"
-          role="button"
-          tabindex="0"
-          @keyup.enter="$emit('navigateToDiscover')"
-          @keyup.space.prevent="$emit('navigateToDiscover')"
-        >
-          <h4>🌟 Discover Movies</h4>
-          <ul>
-            <li>🎭 Filter by genre (Action, Comedy, Drama, Horror, etc.)</li>
-            <li>📅 Browse movies by year or decade</li>
-            <li>⭐ Find highly-rated movies (8.0+, 7.0+, etc.)</li>
-            <li>📊 Sort by popularity, rating, or release date</li>
-          </ul>
-        </div>
-
-        <div 
-          class="feature-section clickable"
-          @click="$emit('navigateToTrending')"
-          role="button"
-          tabindex="0"
-          @keyup.enter="$emit('navigateToTrending')"
-          @keyup.space.prevent="$emit('navigateToTrending')"
-        >
-          <h4>🔥 Trending Now</h4>
-          <ul>            <li>📈 See what's trending this week</li>
-            <li>📅 Check today's most popular movies</li>
-            <li>🌟 Stay updated with current movie trends</li>
-          </ul>
-        </div>        <div 
-          class="feature-section clickable"
-          @click="handleQuickSuggestionsClick"
-          role="button"
-          tabindex="0"
-          @keyup.enter="handleQuickSuggestionsClick"
-          @keyup.space.prevent="handleQuickSuggestionsClick"
-        >
-          <h4>🎯 Quick Suggestions</h4>
-          <ul>
-            <li>🦸 Popular franchises (Marvel, DC, Star Wars)</li>
-            <li>🏆 Award-winning movies and classics</li>
-            <li>📺 90s and 80s nostalgic favorites</li>
-            <li>🎪 One-click access to popular genres</li>
-          </ul>
-        </div>
-
-        <div class="feature-section">
-          <h4>📝 Movie Details</h4>
-          <ul>
-            <li>🎬 View detailed movie information</li>
-            <li>⭐ Check ratings and reviews</li>
-            <li>🖼️ Browse high-quality movie posters</li>
-            <li>📖 Read plot summaries and cast info</li>
-          </ul>
-        </div>
+      <div class="features-grid">
+        <FeatureCard
+          v-for="feature in featureData"
+          :key="feature.id"
+          :title="feature.title"
+          :features="feature.features"
+          :isClickable="feature.isClickable"
+          @click="handleFeatureClick(feature.id)"
+        />
       </div>
     </div>
 
@@ -87,14 +24,92 @@
 </template>
 
 <script setup lang="ts">
-defineEmits<{
+import { FeatureCard } from '../FeatureCard'
+
+interface FeatureData {
+  id: string
+  title: string
+  features: string[]
+  isClickable: boolean
+}
+
+const emits = defineEmits<{
   navigateToSearch: []
   navigateToDiscover: []
   navigateToTrending: []
 }>()
 
-const handleQuickSuggestionsClick = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+const featureData: FeatureData[] = [
+  {
+    id: 'search',
+    title: '🔍 Search Movies',
+    features: [
+      'Search by movie title, actor, or keywords',
+      'Find specific movies quickly and easily',
+      'Get instant search results'
+    ],
+    isClickable: true
+  },
+  {
+    id: 'discover',
+    title: '🌟 Discover Movies',
+    features: [
+      '🎭 Filter by genre (Action, Comedy, Drama, Horror, etc.)',
+      '📅 Browse movies by year or decade',
+      '⭐ Find highly-rated movies (8.0+, 7.0+, etc.)',
+      '📊 Sort by popularity, rating, or release date'
+    ],
+    isClickable: true
+  },
+  {
+    id: 'trending',
+    title: '🔥 Trending Now',
+    features: [
+      '📈 See what\'s trending this week',
+      '📅 Check today\'s most popular movies',
+      '🌟 Stay updated with current movie trends'
+    ],
+    isClickable: true
+  },
+  {
+    id: 'suggestions',
+    title: '🎯 Quick Suggestions',
+    features: [
+      '🦸 Popular franchises (Marvel, DC, Star Wars)',
+      '🏆 Award-winning movies and classics',
+      '📺 90s and 80s nostalgic favorites',
+      '🎪 One-click access to popular genres'
+    ],
+    isClickable: true
+  },
+  {
+    id: 'details',
+    title: '📝 Movie Details',
+    features: [
+      '🎬 View detailed movie information',
+      '⭐ Check ratings and reviews',
+      '🖼️ Browse high-quality movie posters',
+      '📖 Read plot summaries and cast info'
+    ],
+    isClickable: false
+  }
+]
+
+const handleFeatureClick = (featureId: string) => {
+  switch (featureId) {
+    case 'search':
+      emits('navigateToSearch')
+      break
+    case 'discover':
+      emits('navigateToDiscover')
+      break
+    case 'trending':
+      emits('navigateToTrending')
+      break
+    case 'suggestions':
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      break
+  }
 }
 </script>
 

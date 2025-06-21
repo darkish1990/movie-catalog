@@ -1,6 +1,8 @@
 import { ref, computed } from 'vue'
 import type { Movie, MovieDetail, Genre } from '../types/movie'
 import { tmdbService } from '../services/tmdbService'
+import { SEARCH_MODES, TRENDING_PERIODS, SORT_OPTIONS, SORT_ORDERS } from '../constants'
+import type { SearchMode, TrendingPeriod, SortOption, SortOrder } from '../constants'
 
 export const movies = ref<Movie[]>([])
 export const movieDetails = ref<Map<number, MovieDetail>>(new Map())
@@ -13,14 +15,14 @@ export const totalPages = ref(0)
 export const currentPage = ref(1)
 export const genres = ref<Genre[]>([])
 
-export const searchMode = ref<'search' | 'discover' | 'trending'>('search')
-export const trendingPeriod = ref<'day' | 'week'>('week')
+export const searchMode = ref<SearchMode>(SEARCH_MODES.SEARCH)
+export const trendingPeriod = ref<TrendingPeriod>(TRENDING_PERIODS.WEEK)
 
 export const yearFilter = ref('')
 export const ratingFilter = ref('')
 export const genreFilter = ref('')
-export const sortBy = ref<'popularity.desc' | 'release_date.desc' | 'vote_average.desc' | 'title.asc'>('popularity.desc')
-export const sortOrder = ref<'asc' | 'desc'>('desc')
+export const sortBy = ref<SortOption>(SORT_OPTIONS.POPULARITY_DESC)
+export const sortOrder = ref<SortOrder>(SORT_ORDERS.DESC)
 
 export const hasMovies = computed(() => movies.value.length > 0)
 export const isLoading = computed(() => loading.value)

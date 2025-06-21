@@ -1,5 +1,5 @@
 .scroll-to-top {
-  position: fixed;
+  position: fixed !important;
   bottom: 2rem;
   right: 2rem;
   width: 60px;
@@ -12,7 +12,7 @@
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
   transition: all 0.3s ease;
-  z-index: 1000;
+  z-index: 9999 !important;
   opacity: 0;
   transform: translateY(100px);
   display: flex;
@@ -20,6 +20,7 @@
   justify-content: center;
   font-weight: bold;
   line-height: 1;
+  contain: none;
 }
 
 .scroll-to-top.visible {

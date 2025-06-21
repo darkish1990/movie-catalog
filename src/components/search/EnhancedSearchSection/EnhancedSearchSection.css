@@ -1,5 +1,5 @@
 .enhanced-search-section {
-  padding: 2rem;
+  padding: 2rem 1rem;
   background: 
     radial-gradient(ellipse at top left, rgba(229, 9, 20, 0.2) 0%, transparent 50%),
     radial-gradient(ellipse at bottom right, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
@@ -57,7 +57,8 @@
 
 @media (max-width: 768px) {
   .enhanced-search-section {
-    padding: 1.5rem;
+    padding: 1.5rem 0.75rem;
+    margin-bottom: 1.5rem;
   }
   
   .title {
@@ -67,14 +68,32 @@
 
 @media (max-width: 480px) {
   .enhanced-search-section {
-    padding: 1rem;
+    padding: 1rem 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
   }
   
   .title {
     font-size: 1.75rem;
+    letter-spacing: -0.25px;
   }
   
   .subtitle {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .enhanced-search-section {
+    padding: 0.75rem 0.25rem;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+  }
+  
+  .subtitle {
+    font-size: 0.9rem;
   }
 }

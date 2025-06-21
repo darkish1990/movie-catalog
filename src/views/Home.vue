@@ -115,5 +115,14 @@ const handleNavigateToTrending = () => {
 .home {
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Smooth transitions between different content states */
+.home > * {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 </style>

@@ -1,3 +1,13 @@
+import type { 
+  SortOption, 
+  MovieStatus, 
+  VideoType, 
+  VideoSite, 
+  Department, 
+  JobTitle, 
+  LanguageCode 
+} from '../constants'
+
 export interface Movie {
   id: number;
   title: string;
@@ -6,9 +16,8 @@ export interface Movie {
   backdrop_path: string;
   release_date: string;
   vote_average: number;
-  vote_count: number;
-  genre_ids: number[];
-  original_language: string;
+  vote_count: number;  genre_ids: number[];
+  original_language: LanguageCode;
   adult: boolean;
   popularity: number;
 }
@@ -26,14 +35,13 @@ export interface MovieDetail {
   genres: Genre[];
   production_companies: ProductionCompany[];
   production_countries: ProductionCountry[];
-  spoken_languages: SpokenLanguage[];
-  status: string;
+  spoken_languages: SpokenLanguage[];  status: MovieStatus;
   tagline: string;
   budget: number;
   revenue: number;
   adult: boolean;
   original_title: string;
-  original_language: string;
+  original_language: LanguageCode;
   popularity: number;
   credits?: Credits;
   videos?: Videos;
@@ -78,9 +86,8 @@ export interface CastMember {
 
 export interface CrewMember {
   id: number;
-  name: string;
-  job: string;
-  department: string;
+  name: string;  job: JobTitle;
+  department: Department;
   profile_path: string;
 }
 
@@ -91,9 +98,8 @@ export interface Videos {
 export interface Video {
   id: string;
   key: string;
-  name: string;
-  site: string;
-  type: string;
+  name: string;  site: VideoSite;
+  type: VideoType;
   official: boolean;
 }
 
@@ -110,7 +116,8 @@ export interface TMDBSearchFilters {
   year?: number;
   minRating?: number;
   maxRating?: number;
-  sortBy?: 'popularity.desc' | 'release_date.desc' | 'vote_average.desc' | 'title.asc';  page?: number;
+  sortBy?: SortOption;
+  page?: number;
 }
 
 export interface Rating {

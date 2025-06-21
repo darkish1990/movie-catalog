@@ -1,5 +1,7 @@
 import axios from 'axios'
 import type { MovieSearchResponse, TMDBSearchFilters, MovieDetail, Genre } from '../types/movie'
+import { API_ENDPOINTS, JOB_TITLES, TRENDING_PERIODS } from '../constants'
+import type { TrendingPeriod } from '../constants'
 
 const TMDB_ACCESS_TOKEN = import.meta.env.VITE_TMDB_ACCESS_TOKEN 
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3'
@@ -16,7 +18,7 @@ const tmdbApi = axios.create({
 class TMDBService {
   async searchMovies(query: string, page = 1): Promise<MovieSearchResponse> {
     try {
-      const response = await tmdbApi.get('/search/movie', {
+      const response = await tmdbApi.get(API_ENDPOINTS.SEARCH_MOVIE, {
         params: {
           query,
           page,
@@ -57,7 +59,7 @@ class TMDBService {
     }
 
     try {
-      const response = await tmdbApi.get('/discover/movie', { params })
+      const response = await tmdbApi.get(API_ENDPOINTS.DISCOVER_MOVIE, { params })
       return response.data
     } catch (error: any) {
       console.error('TMDB Discover Error:', error.response?.data || error.message)
@@ -66,7 +68,7 @@ class TMDBService {
 
   async getGenres(): Promise<Genre[]> {
     try {
-      const response = await tmdbApi.get('/genre/movie/list')
+      const response = await tmdbApi.get(API_ENDPOINTS.GENRES)
       return response.data.genres
     } catch (error: any) {
       console.error('TMDB Genres Error:', error.response?.data || error.message)
@@ -75,7 +77,7 @@ class TMDBService {
 
   async getMovieDetails(movieId: number): Promise<MovieDetail> {
     try {
-      const response = await tmdbApi.get(`/movie/${movieId}`, {
+      const response = await tmdbApi.get(`${API_ENDPOINTS.MOVIE_DETAILS}/${movieId}`, {
         params: {
           append_to_response: 'credits,videos,similar'
         }
@@ -85,10 +87,9 @@ class TMDBService {
       console.error('TMDB Movie Details Error:', error.response?.data || error.message)
       throw new Error(`Failed to get movie details: ${error.response?.data?.status_message || error.message}`)
     }
-  }
-  async getTrending(timeWindow: 'day' | 'week' = 'week'): Promise<MovieSearchResponse> {
+  }  async getTrending(timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK): Promise<MovieSearchResponse> {
     try {
-      const response = await tmdbApi.get(`/trending/movie/${timeWindow}`)
+      const response = await tmdbApi.get(`${API_ENDPOINTS.TRENDING_MOVIE}/${timeWindow}`)
       return response.data
     } catch (error: any) {
       console.error('TMDB Trending Error:', error.response?.data || error.message)
@@ -97,7 +98,7 @@ class TMDBService {
 
   async getPopular(page = 1): Promise<MovieSearchResponse> {
     try {
-      const response = await tmdbApi.get('/movie/popular', {
+      const response = await tmdbApi.get(API_ENDPOINTS.POPULAR_MOVIES, {
         params: { page }
       })
       return response.data
@@ -134,7 +135,7 @@ class TMDBService {
 
   getDirector(credits?: any): string {
     if (!credits || !credits.crew) return 'Unknown'
-    const director = credits.crew.find((person: any) => person.job === 'Director')
+    const director = credits.crew.find((person: any) => person.job === JOB_TITLES.DIRECTOR)
     return director ? director.name : 'Unknown'
   }
 

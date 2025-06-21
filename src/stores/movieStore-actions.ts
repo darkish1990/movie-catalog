@@ -1,5 +1,7 @@
 import type { TMDBSearchFilters } from '../types/movie'
 import { tmdbService } from '../services/tmdbService'
+import { SEARCH_MODES, TRENDING_PERIODS } from '../constants'
+import type { TrendingPeriod } from '../constants'
 import { 
   loading, 
   error, 
@@ -42,10 +44,9 @@ export const searchMovies = async (query: string, page = 1) => {
     return
   }
   lastSearchQuery = searchKey
-
   setLoading(true)
   clearError()
-  searchMode.value = 'search'
+  searchMode.value = SEARCH_MODES.SEARCH
 
   try {
     const response = await tmdbService.searchMovies(query, page)
@@ -70,10 +71,9 @@ export const discoverMovies = async (filters: TMDBSearchFilters) => {
     return
   }
   lastDiscoverFilters = filtersKey
-
   setLoading(true)
   clearError()
-  searchMode.value = 'discover'
+  searchMode.value = SEARCH_MODES.DISCOVER
 
   try {
     const response = await tmdbService.discoverMovies(filters)
@@ -96,10 +96,9 @@ export const discoverMovies = async (filters: TMDBSearchFilters) => {
   }
 }
 
-export const getTrendingMovies = async (timeWindow: 'day' | 'week' = 'week') => {
-  setLoading(true)
+export const getTrendingMovies = async (timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK) => {  setLoading(true)
   clearError()
-  searchMode.value = 'trending'
+  searchMode.value = SEARCH_MODES.TRENDING
   trendingPeriod.value = timeWindow
 
   try {
