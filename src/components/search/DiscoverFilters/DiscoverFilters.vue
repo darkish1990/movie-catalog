@@ -50,7 +50,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { debounce } from '../../../utils'
 import type { Genre, TMDBSearchFilters } from '../../../types/movie'
 
 interface Props {
@@ -79,6 +80,14 @@ const years = Array.from({ length: currentYear - 1949 }, (_, i) => currentYear -
 const handleDiscover = () => {
   emits('discover', { ...localFilters.value })
 }
+
+const debouncedDiscover = debounce(() => {
+  emits('discover', { ...localFilters.value })
+}, 300)
+
+watch(localFilters, () => {
+  debouncedDiscover()
+}, { deep: true })
 </script>
 
 <style scoped>

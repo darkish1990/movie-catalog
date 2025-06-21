@@ -16,6 +16,9 @@ import {
   sortBy
 } from './movieStore-state'
 
+let lastSearchQuery = ''
+let lastDiscoverFilters = ''
+
 export const setLoading = (value: boolean) => {
   loading.value = value
 }
@@ -33,6 +36,12 @@ export const searchMovies = async (query: string, page = 1) => {
     setError('Please enter a search term')
     return
   }
+
+  const searchKey = `${query.trim()}-${page}`
+  if (lastSearchQuery === searchKey) {
+    return
+  }
+  lastSearchQuery = searchKey
 
   setLoading(true)
   clearError()
@@ -56,6 +65,12 @@ export const searchMovies = async (query: string, page = 1) => {
 }
 
 export const discoverMovies = async (filters: TMDBSearchFilters) => {
+  const filtersKey = JSON.stringify(filters)
+  if (lastDiscoverFilters === filtersKey) {
+    return
+  }
+  lastDiscoverFilters = filtersKey
+
   setLoading(true)
   clearError()
   searchMode.value = 'discover'
