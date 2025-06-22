@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
 import type { Movie, MovieDetail, Genre } from '../types'
 import { tmdbService } from '../services/tmdbService'
-import { SEARCH_MODES, TRENDING_PERIODS, SORT_OPTIONS, SORT_ORDERS } from '../constants'
-import type { SearchMode, TrendingPeriod, SortOption, SortOrder } from '../types'
+import { SEARCH_MODES, TRENDING_PERIODS, SORT_OPTIONS } from '../constants'
+import type { SearchMode, TrendingPeriod, SortOption } from '../types'
 
 export const movies = ref<Movie[]>([])
 export const movieDetails = ref<Map<number, MovieDetail>>(new Map())
@@ -22,7 +22,6 @@ export const yearFilter = ref('')
 export const ratingFilter = ref('')
 export const genreFilter = ref('')
 export const sortBy = ref<SortOption>(SORT_OPTIONS.POPULARITY_DESC)
-export const sortOrder = ref<SortOrder>(SORT_ORDERS.DESC)
 
 export const currentFilters = computed(() => ({
   query: searchQuery.value,
@@ -51,7 +50,7 @@ export const filteredMovies = computed(() => {
     const genreId = parseInt(genreFilter.value)
     filtered = filtered.filter(movie => {
       if (movie.genre_ids.includes(genreId)) return true
-      
+
       const details = movieDetails.value.get(movie.id)
       if (details && details.genres) {
         return details.genres.some(genre => genre.id === genreId)
@@ -66,7 +65,7 @@ export const filteredMovies = computed(() => {
   }
   return filtered.sort((a, b) => {
     let comparison = 0
-    
+
     const sortType = sortBy.value.split('.')[0]
     switch (sortType) {
       case 'title':
@@ -84,26 +83,12 @@ export const filteredMovies = computed(() => {
         comparison = a.popularity - b.popularity
         break
     }
-    
+
     const isDesc = sortBy.value.includes('.desc')
     return isDesc ? -comparison : comparison
   })
 })
 
-export const availableYears = computed(() => {
-  const years = movies.value.map(movie => tmdbService.formatReleaseDate(movie.release_date))
-  return [...new Set(years)].sort().reverse()
-})
-
 export const availableGenres = computed(() => {
   return genres.value
 })
-
-export const availableRatingRanges = computed(() => [
-  { label: 'All Ratings', value: '' },
-  { label: '9.0+ (Excellent)', value: '9.0' },
-  { label: '8.0+ (Very Good)', value: '8.0' },
-  { label: '7.0+ (Good)', value: '7.0' },
-  { label: '6.0+ (Decent)', value: '6.0' },
-  { label: '5.0+ (Average)', value: '5.0' }
-])

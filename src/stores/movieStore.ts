@@ -14,17 +14,15 @@ import {
   searchMode,
   trendingPeriod,
   yearFilter,
-  ratingFilter,  genreFilter,
+  ratingFilter,
+  genreFilter,
   sortBy,
-  sortOrder,
   currentFilters,
   hasMovies,
   isLoading,
   hasError,
   filteredMovies,
-  availableYears,
-  availableGenres,
-  availableRatingRanges
+  availableGenres
 } from './movieStore-state'
 
 import {
@@ -41,15 +39,12 @@ import {
 } from './movieStore-details'
 
 import {
-  applyFilters,
-  clearFilters,
   clearSearch,
   reset
 } from './movieStore-utils'
 
 export const useMovieStore = defineStore('movie', () => {
-  return {
-    movies,
+  return {    movies,
     movieDetails,
     currentMovie,
     loading,
@@ -63,25 +58,21 @@ export const useMovieStore = defineStore('movie', () => {
     trendingPeriod,
     yearFilter,
     ratingFilter,
-    genreFilter,    sortBy,
-    sortOrder,
+    genreFilter,
+    sortBy,
     currentFilters,
-    
+
     hasMovies,
     isLoading,
     hasError,
     filteredMovies,
-    availableYears,
     availableGenres,
-    availableRatingRanges,
-    
+
     initializeGenres,
     searchMovies,
     discoverMovies,
     getTrendingMovies,
     fetchMovieDetails,
-    applyFilters,
-    clearFilters,
     clearSearch,
     reset,
     setError,

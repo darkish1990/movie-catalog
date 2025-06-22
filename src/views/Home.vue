@@ -49,6 +49,7 @@ const totalResults = computed(() => movieStore.totalResults)
 const totalPages = computed(() => movieStore.totalPages)
 const currentPage = computed(() => movieStore.currentPage)
 const genres = computed(() => movieStore.genres)
+const trendingPeriod = computed(() => movieStore.trendingPeriod)
 
 const handleSearch = async (query: string, page = 1) => {
   searchQuery.value = query
@@ -112,7 +113,7 @@ const handlePageChange = (page: number) => {
       page
     })
   } else if (searchMode.value === 'trending') {
-    movieStore.getTrendingMovies(movieStore.trendingPeriod, page)
+    movieStore.getTrendingMovies(trendingPeriod.value, page)
   }
 }
 </script>
