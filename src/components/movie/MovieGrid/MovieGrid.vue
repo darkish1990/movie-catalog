@@ -40,4 +40,5 @@ defineEmits<{
 
 <style scoped>
 @import './MovieGrid.css';
+@import '../../../assets/animations.css';
 </style>

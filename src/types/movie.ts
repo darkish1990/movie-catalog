@@ -120,19 +120,4 @@ export interface TMDBSearchFilters {
   page?: number;
 }
 
-export interface Rating {
-  Source: string;
-  Value: string;
-}
 
-export interface SearchResponse {
-  Search: Movie[];
-  totalResults: string;
-  Response: string;  Error?: string;
-}
-
-export interface SearchFilters {
-  year?: string;
-  type?: 'movie' | 'series' | 'episode';
-  plot?: 'short' | 'full';
-}

@@ -16,4 +16,5 @@ withDefaults(defineProps<Props>(), {
 
 <style scoped>
 @import './LoadingSpinner.css';
+@import '../../../assets/animations.css';
 </style>

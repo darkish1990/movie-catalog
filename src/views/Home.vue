@@ -116,7 +116,7 @@ const handleNavigateToTrending = () => {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
   min-height: 100vh;
   position: relative;
 }
