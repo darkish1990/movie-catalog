@@ -1,7 +1,6 @@
 import { LANGUAGE_CODES } from './movie-constants'
 import type { LanguageCode } from './movie-types'
 
-// Language Names mapping
 export const LANGUAGE_NAMES: Record<LanguageCode, string> = {
   [LANGUAGE_CODES.EN]: 'English',
   [LANGUAGE_CODES.ES]: 'Spanish',
@@ -17,12 +16,10 @@ export const LANGUAGE_NAMES: Record<LanguageCode, string> = {
   [LANGUAGE_CODES.AR]: 'Arabic',
 } as const
 
-// Helper function to get language name
 export const getLanguageName = (code: LanguageCode): string => {
   return LANGUAGE_NAMES[code] || code.toUpperCase()
 }
 
-// Helper function to validate language code
 export const isValidLanguageCode = (code: string): code is LanguageCode => {
   return Object.values(LANGUAGE_CODES).includes(code as LanguageCode)
 }

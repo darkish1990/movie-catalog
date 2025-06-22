@@ -1,4 +1,3 @@
-// Search Modes
 export const SEARCH_MODES = {
   SEARCH: 'search',
   DISCOVER: 'discover',
@@ -7,7 +6,6 @@ export const SEARCH_MODES = {
 
 export type SearchMode = typeof SEARCH_MODES[keyof typeof SEARCH_MODES];
 
-// Trending Periods
 export const TRENDING_PERIODS = {
   DAY: 'day',
   WEEK: 'week',
@@ -15,7 +13,6 @@ export const TRENDING_PERIODS = {
 
 export type TrendingPeriod = typeof TRENDING_PERIODS[keyof typeof TRENDING_PERIODS];
 
-// Sort Options
 export const SORT_OPTIONS = {
   POPULARITY_DESC: 'popularity.desc',
   RELEASE_DATE_DESC: 'release_date.desc',
@@ -25,7 +22,6 @@ export const SORT_OPTIONS = {
 
 export type SortOption = typeof SORT_OPTIONS[keyof typeof SORT_OPTIONS];
 
-// Sort Orders
 export const SORT_ORDERS = {
   ASC: 'asc',
   DESC: 'desc',
@@ -33,7 +29,6 @@ export const SORT_ORDERS = {
 
 export type SortOrder = typeof SORT_ORDERS[keyof typeof SORT_ORDERS];
 
-// Movie Status Values
 export const MOVIE_STATUS = {
   RUMORED: 'Rumored',
   PLANNED: 'Planned',
@@ -45,7 +40,6 @@ export const MOVIE_STATUS = {
 
 export type MovieStatus = typeof MOVIE_STATUS[keyof typeof MOVIE_STATUS];
 
-// Video Types
 export const VIDEO_TYPES = {
   TRAILER: 'Trailer',
   TEASER: 'Teaser',
@@ -57,7 +51,6 @@ export const VIDEO_TYPES = {
 
 export type VideoType = typeof VIDEO_TYPES[keyof typeof VIDEO_TYPES];
 
-// Video Sites
 export const VIDEO_SITES = {
   YOUTUBE: 'YouTube',
   VIMEO: 'Vimeo',
@@ -65,7 +58,6 @@ export const VIDEO_SITES = {
 
 export type VideoSite = typeof VIDEO_SITES[keyof typeof VIDEO_SITES];
 
-// Department Names (for crew)
 export const DEPARTMENTS = {
   DIRECTING: 'Directing',
   WRITING: 'Writing',
@@ -81,7 +73,6 @@ export const DEPARTMENTS = {
 
 export type Department = typeof DEPARTMENTS[keyof typeof DEPARTMENTS];
 
-// Job Titles (common crew positions)
 export const JOB_TITLES = {
   DIRECTOR: 'Director',
   PRODUCER: 'Producer',
@@ -98,7 +89,6 @@ export const JOB_TITLES = {
 
 export type JobTitle = typeof JOB_TITLES[keyof typeof JOB_TITLES];
 
-// Image Sizes (TMDB)
 export const IMAGE_SIZES = {
   POSTER: {
     W92: 'w92',
@@ -127,7 +117,6 @@ export type PosterSize = typeof IMAGE_SIZES.POSTER[keyof typeof IMAGE_SIZES.POST
 export type BackdropSize = typeof IMAGE_SIZES.BACKDROP[keyof typeof IMAGE_SIZES.BACKDROP];
 export type ProfileSize = typeof IMAGE_SIZES.PROFILE[keyof typeof IMAGE_SIZES.PROFILE];
 
-// Language Codes (common ones)
 export const LANGUAGE_CODES = {
   EN: 'en',
   ES: 'es',
@@ -145,7 +134,6 @@ export const LANGUAGE_CODES = {
 
 export type LanguageCode = typeof LANGUAGE_CODES[keyof typeof LANGUAGE_CODES];
 
-// Language Names
 export const LANGUAGE_NAMES: Record<LanguageCode, string> = {
   [LANGUAGE_CODES.EN]: 'English',
   [LANGUAGE_CODES.ES]: 'Spanish',
@@ -161,7 +149,6 @@ export const LANGUAGE_NAMES: Record<LanguageCode, string> = {
   [LANGUAGE_CODES.AR]: 'Arabic',
 } as const;
 
-// API Endpoints
 export const API_ENDPOINTS = {
   SEARCH_MOVIE: '/search/movie',
   DISCOVER_MOVIE: '/discover/movie',
@@ -174,7 +161,6 @@ export const API_ENDPOINTS = {
 
 export type ApiEndpoint = typeof API_ENDPOINTS[keyof typeof API_ENDPOINTS];
 
-// Rating Ranges (for filtering)
 export const RATING_RANGES = {
   EXCELLENT: { min: 8.0, max: 10.0, label: '8.0+ Excellent' },
   VERY_GOOD: { min: 7.0, max: 7.9, label: '7.0+ Very Good' },
@@ -185,7 +171,6 @@ export const RATING_RANGES = {
 
 export type RatingRange = keyof typeof RATING_RANGES;
 
-// Decade Ranges (for filtering)
 export const DECADE_RANGES = {
   TWENTIES: { start: 2020, end: 2029, label: '2020s' },
   TENS: { start: 2010, end: 2019, label: '2010s' },

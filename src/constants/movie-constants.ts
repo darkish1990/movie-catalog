@@ -1,10 +1,8 @@
-// Sort Orders (base components)
 export const SORT_ORDERS = {
   ASC: 'asc',
   DESC: 'desc',
 } as const;
 
-// Sort Fields (what can be sorted by)
 export const SORT_FIELDS = {
   POPULARITY: 'popularity',
   RELEASE_DATE: 'release_date',
@@ -12,7 +10,6 @@ export const SORT_FIELDS = {
   TITLE: 'title',
 } as const;
 
-// Composed Sort Options (field.order combinations)
 export const SORT_OPTIONS = {
   POPULARITY_DESC: `${SORT_FIELDS.POPULARITY}.${SORT_ORDERS.DESC}`,
   POPULARITY_ASC: `${SORT_FIELDS.POPULARITY}.${SORT_ORDERS.ASC}`,
@@ -24,20 +21,17 @@ export const SORT_OPTIONS = {
   TITLE_DESC: `${SORT_FIELDS.TITLE}.${SORT_ORDERS.DESC}`,
 } as const;
 
-// Search Modes
 export const SEARCH_MODES = {
   SEARCH: 'search',
   DISCOVER: 'discover',
   TRENDING: 'trending',
 } as const;
 
-// Trending Periods
 export const TRENDING_PERIODS = {
   DAY: 'day',
   WEEK: 'week',
 } as const;
 
-// Movie Status Values
 export const MOVIE_STATUS = {
   RUMORED: 'Rumored',
   PLANNED: 'Planned',
@@ -47,7 +41,6 @@ export const MOVIE_STATUS = {
   CANCELED: 'Canceled',
 } as const;
 
-// Video Types
 export const VIDEO_TYPES = {
   TRAILER: 'Trailer',
   TEASER: 'Teaser',
@@ -57,13 +50,11 @@ export const VIDEO_TYPES = {
   BLOOPERS: 'Bloopers',
 } as const;
 
-// Video Sites
 export const VIDEO_SITES = {
   YOUTUBE: 'YouTube',
   VIMEO: 'Vimeo',
 } as const;
 
-// Department Names (for crew)
 export const DEPARTMENTS = {
   DIRECTING: 'Directing',
   WRITING: 'Writing',
@@ -77,7 +68,6 @@ export const DEPARTMENTS = {
   LIGHTING: 'Lighting',
 } as const;
 
-// Job Titles (common crew positions)
 export const JOB_TITLES = {
   DIRECTOR: 'Director',
   PRODUCER: 'Producer',
@@ -92,7 +82,6 @@ export const JOB_TITLES = {
   COSTUME_DESIGNER: 'Costume Design',
 } as const;
 
-// Image Sizes (TMDB)
 export const IMAGE_SIZES = {
   POSTER: {
     W92: 'w92',
@@ -117,7 +106,6 @@ export const IMAGE_SIZES = {
   },
 } as const;
 
-// Language Codes (common ones)
 export const LANGUAGE_CODES = {
   EN: 'en',
   ES: 'es',
@@ -133,7 +121,6 @@ export const LANGUAGE_CODES = {
   AR: 'ar',
 } as const;
 
-// API Endpoints
 export const API_ENDPOINTS = {
   SEARCH_MOVIE: '/search/movie',
   DISCOVER_MOVIE: '/discover/movie',
@@ -144,7 +131,6 @@ export const API_ENDPOINTS = {
   GENRES: '/genre/movie/list',
 } as const;
 
-// Rating Ranges (for filtering)
 export const RATING_RANGES = {
   EXCELLENT: { min: 8.0, max: 10.0, label: '8.0+ Excellent' },
   VERY_GOOD: { min: 7.0, max: 7.9, label: '7.0+ Very Good' },
@@ -153,7 +139,6 @@ export const RATING_RANGES = {
   BELOW_AVERAGE: { min: 0, max: 4.9, label: 'Below 5.0' },
 } as const;
 
-// Decade Ranges (for filtering)
 export const DECADE_RANGES = {
   TWENTIES: { start: 2020, end: 2029, label: '2020s' },
   TENS: { start: 2010, end: 2019, label: '2010s' },
