@@ -1,51 +1,22 @@
-<template>  <div class="home">    <EnhancedSearchSection
-      :loading="loading"
-      :genres="genres"
-      :mode="searchMode"
-      @search="handleSearch"
-      @discover="handleDiscover"
-      @trending="handleTrending"
-      @modeChanged="handleModeChanged"
-    />
+<template>
+  <div class="home">
+    <EnhancedSearchSection :loading="loading" :genres="genres" :mode="searchMode" @search="handleSearch"
+      @discover="handleDiscover" @trending="handleTrending" @modeChanged="handleModeChanged" />
     <LoadingSpinner v-if="loading" message="Loading movies..." />
     <ErrorMessage v-if="error" :message="error" @retry="movieStore.clearError" />
-      <!-- Top pagination -->
-    <Pagination
-      v-if="!loading && filteredMovies.length > 0 && totalPages > 1"
-      :currentPage="currentPage"
-      :totalPages="totalPages"
-      :visiblePageCount="3"
-      @pageChange="handlePageChange"
-      class="pagination-top"
-    />
-    
-    <MovieGrid
-      v-if="!loading && filteredMovies.length > 0"
-      :movies="filteredMovies"
-      :title="getResultsTitle()"
-      :totalResults="totalResults"
-      @movieClick="goToMovieDetails"
-    />
-      <!-- Bottom pagination -->
-    <Pagination
-      v-if="!loading && filteredMovies.length > 0 && totalPages > 1"
-      :currentPage="currentPage"
-      :totalPages="totalPages"
-      @pageChange="handlePageChange"
-      class="pagination-bottom"
-    />
-    
-    <NoResults
-      v-if="!loading && !error && !hasMovies && searchQuery"
-      :searchQuery="searchQuery"
-    />
-    
-    <WelcomeSection
-      v-if="!loading && !error && !hasMovies && !searchQuery"
-      @navigateToSearch="handleNavigateToSearch"
-      @navigateToDiscover="handleNavigateToDiscover"
-      @navigateToTrending="handleNavigateToTrending"
-    />
+    <Pagination v-if="!loading && filteredMovies.length > 0 && totalPages > 1" :currentPage="currentPage"
+      :totalPages="totalPages" :visiblePageCount="3" @pageChange="handlePageChange" class="pagination-top" />
+
+    <MovieGrid v-if="!loading && filteredMovies.length > 0" :movies="filteredMovies" :title="getResultsTitle()"
+      :totalResults="totalResults" @movieClick="goToMovieDetails" />
+
+    <Pagination v-if="!loading && filteredMovies.length > 0 && totalPages > 1" :currentPage="currentPage"
+      :totalPages="totalPages" @pageChange="handlePageChange" class="pagination-bottom" />
+
+    <NoResults v-if="!loading && !error && !hasMovies && searchQuery" :searchQuery="searchQuery" />
+
+    <WelcomeSection v-if="!loading && !error && !hasMovies && !searchQuery" @navigateToSearch="handleNavigateToSearch"
+      @navigateToDiscover="handleNavigateToDiscover" @navigateToTrending="handleNavigateToTrending" />
     <ScrollToTop />
   </div>
 </template>
@@ -136,9 +107,9 @@ const handlePageChange = (page: number) => {
   if (searchMode.value === 'search' && searchQuery.value) {
     movieStore.searchMovies(searchQuery.value, page)
   } else if (searchMode.value === 'discover') {
-    movieStore.discoverMovies({ 
+    movieStore.discoverMovies({
       ...movieStore.currentFilters,
-      page 
+      page
     })
   } else if (searchMode.value === 'trending') {
     movieStore.getTrendingMovies(movieStore.trendingPeriod, page)
@@ -157,7 +128,7 @@ const handlePageChange = (page: number) => {
 }
 
 /* Smooth transitions between different content states */
-.home > * {
+.home>* {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 

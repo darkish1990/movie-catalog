@@ -2,9 +2,9 @@
   <div id="app">
     <header class="app-header">
       <nav class="nav">
-        <button @click="goToHomeAndClear" class="nav-brand">
+        <a href="/" @click.prevent="goToHomeAndClear" class="nav-brand" role="link">
           🎬 Movie Catalog
-        </button>
+        </a>
       </nav>
     </header>
     
