@@ -57,11 +57,11 @@ class TMDBService {
 
     if (filters.maxRating) {
       params['vote_average.lte'] = filters.maxRating
+    }    if (filters.sortBy) {
+      params.sort_by = filters.sortBy
     }
 
-    if (filters.sortBy) {
-      params.sort_by = filters.sortBy
-    } try {
+    try {
       const response = await tmdbApi.get(API_ENDPOINTS.DISCOVER_MOVIE, { params })
       return response.data
     } catch (error: any) {

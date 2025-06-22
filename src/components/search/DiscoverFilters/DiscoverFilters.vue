@@ -2,9 +2,8 @@
   <div class="discover-filters">
     <div class="filter-grid">
       <div class="filter-group">
-        <label>🎭 Genre:</label>
-        <select v-model="localFilters.genre" class="filter-select">
-          <option value="">All Genres</option>
+        <label>🎭 Genre:</label>        <select v-model.number="localFilters.genre" class="filter-select">
+          <option :value="undefined">All Genres</option>
           <option v-for="genre in genres" :key="genre.id" :value="genre.id">
             {{ genre.name }}
           </option>
@@ -12,9 +11,8 @@
       </div>
 
       <div class="filter-group">
-        <label>📅 Year:</label>
-        <select v-model="localFilters.year" class="filter-select">
-          <option value="">Any Year</option>
+        <label>📅 Year:</label>        <select v-model.number="localFilters.year" class="filter-select">
+          <option :value="undefined">Any Year</option>
           <option v-for="year in years" :key="year" :value="year">
             {{ year }}
           </option>
@@ -22,13 +20,12 @@
       </div>
 
       <div class="filter-group">
-        <label>⭐ Min Rating:</label>
-        <select v-model="localFilters.minRating" class="filter-select">
-          <option value="">Any Rating</option>
-          <option value="8">8.0+ (Excellent)</option>
-          <option value="7">7.0+ (Very Good)</option>
-          <option value="6">6.0+ (Good)</option>
-          <option value="5">5.0+ (Average)</option>
+        <label>⭐ Min Rating:</label>        <select v-model.number="localFilters.minRating" class="filter-select">
+          <option :value="undefined">Any Rating</option>
+          <option :value="8">8.0+ (Excellent)</option>
+          <option :value="7">7.0+ (Very Good)</option>
+          <option :value="6">6.0+ (Good)</option>
+          <option :value="5">5.0+ (Average)</option>
         </select>
       </div>
 
@@ -66,7 +63,7 @@ const emits = defineEmits<{
 }>()
 
 const localFilters = ref<TMDBSearchFilters>({
-  genre: '',
+  genre: undefined,
   year: undefined,
   minRating: undefined,
   maxRating: undefined,
@@ -78,11 +75,25 @@ const currentYear = new Date().getFullYear()
 const years = Array.from({ length: currentYear - 1949 }, (_, i) => currentYear - i)
 
 const handleDiscover = () => {
-  emits('discover', { ...localFilters.value })
+  const filters = { ...localFilters.value }
+  // Remove undefined values to send cleaner request
+  Object.keys(filters).forEach(key => {
+    if (filters[key as keyof TMDBSearchFilters] === undefined) {
+      delete filters[key as keyof TMDBSearchFilters]
+    }
+  })
+  emits('discover', filters)
 }
 
 const debouncedDiscover = debounce(() => {
-  emits('discover', { ...localFilters.value })
+  const filters = { ...localFilters.value }
+  // Remove undefined values to send cleaner request
+  Object.keys(filters).forEach(key => {
+    if (filters[key as keyof TMDBSearchFilters] === undefined) {
+      delete filters[key as keyof TMDBSearchFilters]
+    }
+  })
+  emits('discover', filters)
 }, 300)
 
 watch(localFilters, () => {

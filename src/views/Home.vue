@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <EnhancedSearchSection :loading="loading" :genres="genres" :mode="searchMode" @search="handleSearch"
+    <EnhancedSearchSection :loading="loading" :genres="genres" :mode="storeSearchMode" @search="handleSearch"
       @discover="handleDiscover" @trending="handleTrending" @modeChanged="handleModeChanged" />
     <LoadingSpinner v-if="loading" message="Loading movies..." />
     <ErrorMessage v-if="error" :message="error" @retry="movieStore.clearError" />
@@ -12,11 +12,12 @@
 
     <Pagination v-if="!loading && filteredMovies.length > 0 && totalPages > 1" :currentPage="currentPage"
       :totalPages="totalPages" @pageChange="handlePageChange" class="pagination-bottom" />
+    <NoResults v-if="!loading && !error && !hasMovies && (searchQuery || storeSearchMode !== 'search')"
+      :searchQuery="searchQuery" />
 
-    <NoResults v-if="!loading && !error && !hasMovies && searchQuery" :searchQuery="searchQuery" />
-
-    <WelcomeSection v-if="!loading && !error && !hasMovies && !searchQuery" @navigateToSearch="handleNavigateToSearch"
-      @navigateToDiscover="handleNavigateToDiscover" @navigateToTrending="handleNavigateToTrending" />
+    <WelcomeSection v-if="!loading && !error && !hasMovies && !searchQuery && storeSearchMode === 'search'"
+      @navigateToSearch="handleNavigateToSearch" @navigateToDiscover="handleNavigateToDiscover"
+      @navigateToTrending="handleNavigateToTrending" />
     <ScrollToTop />
   </div>
 </template>
@@ -50,6 +51,7 @@ const totalPages = computed(() => movieStore.totalPages)
 const currentPage = computed(() => movieStore.currentPage)
 const genres = computed(() => movieStore.genres)
 const trendingPeriod = computed(() => movieStore.trendingPeriod)
+const storeSearchMode = computed(() => movieStore.searchMode)
 
 const handleSearch = async (query: string, page = 1) => {
   searchQuery.value = query
@@ -91,6 +93,7 @@ const handleNavigateToSearch = () => {
 
 const handleNavigateToDiscover = () => {
   searchMode.value = 'discover'
+  searchQuery.value = '' // Clear search query when switching to discover mode
   handleDiscover({
     sortBy: 'popularity.desc',
     page: 1
@@ -100,19 +103,20 @@ const handleNavigateToDiscover = () => {
 
 const handleNavigateToTrending = () => {
   searchMode.value = 'trending'
+  searchQuery.value = '' // Clear search query when switching to trending mode
   handleTrending('week', 1)
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
 const handlePageChange = (page: number) => {
-  if (searchMode.value === 'search' && searchQuery.value) {
+  if (storeSearchMode.value === 'search' && searchQuery.value) {
     movieStore.searchMovies(searchQuery.value, page)
-  } else if (searchMode.value === 'discover') {
+  } else if (storeSearchMode.value === 'discover') {
     movieStore.discoverMovies({
       ...movieStore.currentFilters,
       page
     })
-  } else if (searchMode.value === 'trending') {
+  } else if (storeSearchMode.value === 'trending') {
     movieStore.getTrendingMovies(trendingPeriod.value, page)
   }
 }

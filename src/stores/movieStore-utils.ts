@@ -6,7 +6,10 @@ import {
   totalPages,
   currentMovie,
   movieDetails,
-  searchMode
+  searchMode,
+  genreFilter,
+  yearFilter,
+  ratingFilter
 } from './movieStore-state'
 import { clearError } from './movieStore-actions'
 import { SEARCH_MODES } from '../constants'
@@ -25,4 +28,7 @@ export const reset = () => {
   currentMovie.value = null
   movieDetails.value.clear()
   searchMode.value = SEARCH_MODES.SEARCH
+  genreFilter.value = undefined
+  yearFilter.value = ''
+  ratingFilter.value = ''
 }

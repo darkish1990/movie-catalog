@@ -139,7 +139,7 @@ export interface MovieSearchResponse {
 
 export interface TMDBSearchFilters {
   query?: string;
-  genre?: string;
+  genre?: number;
   year?: number;
   minRating?: number;
   maxRating?: number;
