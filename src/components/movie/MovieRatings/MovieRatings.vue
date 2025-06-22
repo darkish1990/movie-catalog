@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MovieDetail } from '../../../types/movie'
+import type { MovieDetail } from '../../../types'
 
 interface Props {
   movie: MovieDetail

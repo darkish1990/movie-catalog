@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { debounce } from '../../../utils'
-import type { Genre, TMDBSearchFilters } from '../../../types/movie'
+import type { Genre, TMDBSearchFilters } from '../../../types'
 
 interface Props {
   loading: boolean

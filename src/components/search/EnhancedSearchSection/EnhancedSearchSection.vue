@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { Genre, TMDBSearchFilters } from '../../../types/movie'
+import type { Genre, TMDBSearchFilters } from '../../../types'
 
 import SearchModeToggle from '../SearchModeToggle/SearchModeToggle.vue'
 import SearchInput from '../SearchInput/SearchInput.vue'

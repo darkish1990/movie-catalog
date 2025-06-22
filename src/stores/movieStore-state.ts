@@ -1,8 +1,8 @@
 import { ref, computed } from 'vue'
-import type { Movie, MovieDetail, Genre } from '../types/movie'
+import type { Movie, MovieDetail, Genre } from '../types'
 import { tmdbService } from '../services/tmdbService'
 import { SEARCH_MODES, TRENDING_PERIODS, SORT_OPTIONS, SORT_ORDERS } from '../constants'
-import type { SearchMode, TrendingPeriod, SortOption, SortOrder } from '../constants'
+import type { SearchMode, TrendingPeriod, SortOption, SortOrder } from '../types'
 
 export const movies = ref<Movie[]>([])
 export const movieDetails = ref<Map<number, MovieDetail>>(new Map())

@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Movie } from '../../../types/movie'
+import type { Movie } from '../../../types'
 import { tmdbService } from '../../../services/tmdbService'
 
 interface Props {

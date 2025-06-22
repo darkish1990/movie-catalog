@@ -43,7 +43,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { MovieDetail } from '../../../types/movie'
+import type { MovieDetail } from '../../../types'
 import { tmdbService } from '../../../services/tmdbService'
 import { DetailItem } from '../../common'
 

@@ -1,7 +1,7 @@
-import type { TMDBSearchFilters } from '../types/movie'
+import type { TMDBSearchFilters } from '../types'
 import { tmdbService } from '../services/tmdbService'
 import { SEARCH_MODES, TRENDING_PERIODS } from '../constants'
-import type { TrendingPeriod } from '../constants'
+import type { TrendingPeriod } from '../types'
 import { 
   loading, 
   error, 

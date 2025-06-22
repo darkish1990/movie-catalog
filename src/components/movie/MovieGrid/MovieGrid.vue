@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Movie } from '../../../types/movie'
+import type { Movie } from '../../../types'
 import MovieCard from '../MovieCard/MovieCard.vue'
 
 interface Props {

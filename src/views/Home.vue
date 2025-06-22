@@ -25,7 +25,7 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useMovieStore } from '../stores/movieStore'
-import type { TMDBSearchFilters } from '../types/movie'
+import type { TMDBSearchFilters } from '../types'
 
 import { EnhancedSearchSection } from '../components/search'
 import { MovieGrid } from '../components/movie'

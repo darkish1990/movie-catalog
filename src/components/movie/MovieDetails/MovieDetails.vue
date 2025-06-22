@@ -15,16 +15,34 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { MovieDetail } from '../../../types/movie'
+import type { MovieDetail } from '../../../types'
 import { tmdbService } from '../../../services/tmdbService'
 import { DetailItem } from '../../common'
-import { getLanguageName } from '../../../constants'
 
 interface Props {
   movie: MovieDetail
 }
 
 const props = defineProps<Props>()
+
+// Simple language name mapping
+const getLanguageName = (code: string): string => {
+  const languageNames: Record<string, string> = {
+    'en': 'English',
+    'es': 'Spanish', 
+    'fr': 'French',
+    'de': 'German',
+    'it': 'Italian',
+    'ja': 'Japanese',
+    'ko': 'Korean',
+    'zh': 'Chinese',
+    'ru': 'Russian',
+    'pt': 'Portuguese',
+    'hi': 'Hindi',
+    'ar': 'Arabic'
+  }
+  return languageNames[code] || code.toUpperCase()
+}
 
 const director = computed(() => tmdbService.getDirector(props.movie.credits))
 const mainCast = computed(() => tmdbService.getMainCast(props.movie.credits))
