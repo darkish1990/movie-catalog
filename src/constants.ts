@@ -89,7 +89,5 @@ export const API_ENDPOINTS = {
   DISCOVER_MOVIE: '/discover/movie',
   MOVIE_DETAILS: '/movie',
   TRENDING_MOVIE: '/trending/movie',
-  POPULAR_MOVIES: '/movie/popular',
-  TOP_RATED_MOVIES: '/movie/top_rated',
   GENRES: '/genre/movie/list',
 } as const;

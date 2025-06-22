@@ -9,6 +9,7 @@ import {
   searchMode
 } from './movieStore-state'
 import { clearError } from './movieStore-actions'
+import { SEARCH_MODES } from '../constants'
 
 export const clearSearch = () => {
   movies.value = []
@@ -23,5 +24,5 @@ export const reset = () => {
   clearSearch()
   currentMovie.value = null
   movieDetails.value.clear()
-  searchMode.value = 'search'
+  searchMode.value = SEARCH_MODES.SEARCH
 }
