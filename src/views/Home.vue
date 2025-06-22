@@ -1,5 +1,4 @@
-<template>
-  <div class="home">    <EnhancedSearchSection
+<template>  <div class="home">    <EnhancedSearchSection
       :loading="loading"
       :genres="genres"
       :mode="searchMode"
@@ -10,6 +9,16 @@
     />
     <LoadingSpinner v-if="loading" message="Loading movies..." />
     <ErrorMessage v-if="error" :message="error" @retry="movieStore.clearError" />
+      <!-- Top pagination -->
+    <Pagination
+      v-if="!loading && filteredMovies.length > 0 && totalPages > 1"
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      :visiblePageCount="3"
+      @pageChange="handlePageChange"
+      class="pagination-top"
+    />
+    
     <MovieGrid
       v-if="!loading && filteredMovies.length > 0"
       :movies="filteredMovies"
@@ -17,10 +26,21 @@
       :totalResults="totalResults"
       @movieClick="goToMovieDetails"
     />
+      <!-- Bottom pagination -->
+    <Pagination
+      v-if="!loading && filteredMovies.length > 0 && totalPages > 1"
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      @pageChange="handlePageChange"
+      class="pagination-bottom"
+    />
+    
     <NoResults
       v-if="!loading && !error && !hasMovies && searchQuery"
       :searchQuery="searchQuery"
-    />    <WelcomeSection
+    />
+    
+    <WelcomeSection
       v-if="!loading && !error && !hasMovies && !searchQuery"
       @navigateToSearch="handleNavigateToSearch"
       @navigateToDiscover="handleNavigateToDiscover"
@@ -38,7 +58,7 @@ import type { TMDBSearchFilters } from '../types/movie'
 
 import { EnhancedSearchSection } from '../components/search'
 import { MovieGrid } from '../components/movie'
-import { LoadingSpinner, ErrorMessage, NoResults, WelcomeSection, ScrollToTop } from '../components/common'
+import { LoadingSpinner, ErrorMessage, NoResults, Pagination, WelcomeSection, ScrollToTop } from '../components/common'
 
 const router = useRouter()
 const movieStore = useMovieStore()
@@ -55,19 +75,21 @@ const loading = computed(() => movieStore.loading)
 const error = computed(() => movieStore.error)
 const hasMovies = computed(() => movieStore.hasMovies)
 const totalResults = computed(() => movieStore.totalResults)
+const totalPages = computed(() => movieStore.totalPages)
+const currentPage = computed(() => movieStore.currentPage)
 const genres = computed(() => movieStore.genres)
 
-const handleSearch = async (query: string) => {
+const handleSearch = async (query: string, page = 1) => {
   searchQuery.value = query
-  await movieStore.searchMovies(query.trim())
+  await movieStore.searchMovies(query.trim(), page)
 }
 
 const handleDiscover = async (filters: TMDBSearchFilters) => {
   await movieStore.discoverMovies(filters)
 }
 
-const handleTrending = async (period: 'day' | 'week') => {
-  await movieStore.getTrendingMovies(period)
+const handleTrending = async (period: 'day' | 'week', page = 1) => {
+  await movieStore.getTrendingMovies(period, page)
 }
 
 const handleModeChanged = (mode: 'search' | 'discover' | 'trending') => {
@@ -106,8 +128,21 @@ const handleNavigateToDiscover = () => {
 
 const handleNavigateToTrending = () => {
   searchMode.value = 'trending'
-  handleTrending('week')
+  handleTrending('week', 1)
   window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
+const handlePageChange = (page: number) => {
+  if (searchMode.value === 'search' && searchQuery.value) {
+    movieStore.searchMovies(searchQuery.value, page)
+  } else if (searchMode.value === 'discover') {
+    movieStore.discoverMovies({ 
+      ...movieStore.currentFilters,
+      page 
+    })
+  } else if (searchMode.value === 'trending') {
+    movieStore.getTrendingMovies(movieStore.trendingPeriod, page)
+  }
 }
 </script>
 
@@ -124,5 +159,16 @@ const handleNavigateToTrending = () => {
 /* Smooth transitions between different content states */
 .home > * {
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Top pagination styling */
+.pagination-top {
+  margin-bottom: 1rem;
+  transform: scale(0.9);
+}
+
+/* Bottom pagination styling */
+.pagination-bottom {
+  margin-top: 1rem;
 }
 </style>

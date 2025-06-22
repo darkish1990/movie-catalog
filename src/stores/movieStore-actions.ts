@@ -18,9 +18,6 @@ import {
   sortBy
 } from './movieStore-state'
 
-let lastSearchQuery = ''
-let lastDiscoverFilters = ''
-
 export const setLoading = (value: boolean) => {
   loading.value = value
 }
@@ -39,11 +36,6 @@ export const searchMovies = async (query: string, page = 1) => {
     return
   }
 
-  const searchKey = `${query.trim()}-${page}`
-  if (lastSearchQuery === searchKey) {
-    return
-  }
-  lastSearchQuery = searchKey
   setLoading(true)
   clearError()
   searchMode.value = SEARCH_MODES.SEARCH
@@ -66,11 +58,6 @@ export const searchMovies = async (query: string, page = 1) => {
 }
 
 export const discoverMovies = async (filters: TMDBSearchFilters) => {
-  const filtersKey = JSON.stringify(filters)
-  if (lastDiscoverFilters === filtersKey) {
-    return
-  }
-  lastDiscoverFilters = filtersKey
   setLoading(true)
   clearError()
   searchMode.value = SEARCH_MODES.DISCOVER
@@ -96,18 +83,19 @@ export const discoverMovies = async (filters: TMDBSearchFilters) => {
   }
 }
 
-export const getTrendingMovies = async (timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK) => {  setLoading(true)
+export const getTrendingMovies = async (timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK, page = 1) => {
+  setLoading(true)
   clearError()
   searchMode.value = SEARCH_MODES.TRENDING
   trendingPeriod.value = timeWindow
 
   try {
-    const response = await tmdbService.getTrending(timeWindow)
+    const response = await tmdbService.getTrending(timeWindow, page)
     
     movies.value = response.results || []
     totalResults.value = response.total_results || 0
     totalPages.value = response.total_pages || 0
-    currentPage.value = 1
+    currentPage.value = page
     
   } catch (err) {
     setError(err instanceof Error ? err.message : 'Failed to get trending movies')

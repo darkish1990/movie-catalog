@@ -87,9 +87,11 @@ class TMDBService {
       console.error('TMDB Movie Details Error:', error.response?.data || error.message)
       throw new Error(`Failed to get movie details: ${error.response?.data?.status_message || error.message}`)
     }
-  }  async getTrending(timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK): Promise<MovieSearchResponse> {
+  }  async getTrending(timeWindow: TrendingPeriod = TRENDING_PERIODS.WEEK, page = 1): Promise<MovieSearchResponse> {
     try {
-      const response = await tmdbApi.get(`${API_ENDPOINTS.TRENDING_MOVIE}/${timeWindow}`)
+      const response = await tmdbApi.get(`${API_ENDPOINTS.TRENDING_MOVIE}/${timeWindow}`, {
+        params: { page }
+      })
       return response.data
     } catch (error: any) {
       console.error('TMDB Trending Error:', error.response?.data || error.message)

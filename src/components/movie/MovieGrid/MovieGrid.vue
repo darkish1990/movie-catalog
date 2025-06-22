@@ -3,7 +3,7 @@
     <h2 class="section-title">
       {{ title }}
       <span class="results-count" v-if="showResultsCount">
-        ({{ movies.length }} of {{ totalResults }} results)
+        (showing {{ movies.length }} of {{ totalResults }} results)
       </span>
     </h2>
       <div class="movies-grid">

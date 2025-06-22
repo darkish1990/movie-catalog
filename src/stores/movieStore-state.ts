@@ -24,6 +24,15 @@ export const genreFilter = ref('')
 export const sortBy = ref<SortOption>(SORT_OPTIONS.POPULARITY_DESC)
 export const sortOrder = ref<SortOrder>(SORT_ORDERS.DESC)
 
+export const currentFilters = computed(() => ({
+  query: searchQuery.value,
+  genre: genreFilter.value,
+  year: yearFilter.value ? parseInt(yearFilter.value) : undefined,
+  minRating: ratingFilter.value ? parseFloat(ratingFilter.value) : undefined,
+  sortBy: sortBy.value,
+  page: currentPage.value
+}))
+
 export const hasMovies = computed(() => movies.value.length > 0)
 export const isLoading = computed(() => loading.value)
 export const hasError = computed(() => !!error.value)
