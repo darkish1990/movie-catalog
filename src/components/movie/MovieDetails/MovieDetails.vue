@@ -19,7 +19,6 @@ import type { MovieDetail } from '../../../types/movie'
 import { tmdbService } from '../../../services/tmdbService'
 import { DetailItem } from '../../common'
 import { getLanguageName } from '../../../constants'
-import type { LanguageCode } from '../../../constants'
 
 interface Props {
   movie: MovieDetail
